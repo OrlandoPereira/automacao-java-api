@@ -33,3 +33,4 @@ target
 *.iml
 out
 gen
+!/automacao-java-api.iml

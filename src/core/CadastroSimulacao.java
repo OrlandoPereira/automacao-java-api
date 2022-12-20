@@ -49,11 +49,12 @@ public class CadastroSimulacao{
         if (name == SimulacoesEnum.PARCELAS){simulacao.setParcelas(Integer.parseInt(valeu));}
         else {simulacao.setParcelas(6);}
         // Seguro
-        if (name == SimulacoesEnum.SEGURO){
-            if (valeu.equalsIgnoreCase("true")){simulacao.setSeguro(true);}}
-            else if (valeu.equalsIgnoreCase("false")) {simulacao.setSeguro(true);}
-        else {simulacao.setSeguro(true);}
-
+        if (name == SimulacoesEnum.SEGURO) {
+            if (valeu.equalsIgnoreCase("true")){simulacao.setSeguro(true);
+            } else if (valeu.equalsIgnoreCase("false")){simulacao.setSeguro(false);
+            } else {simulacao.setSeguro(true);
+            }
+        }
         return simulacao;
     }
 
@@ -78,7 +79,6 @@ public class CadastroSimulacao{
     public Object cadastroParametrizadoSelecionaCampo(Object[] names){
         /* Serão passado um ou mais campos que serão enviado no playload */
         for (Object name : names) {
-            System.out.println(name);
             // CPF
             if (name == SimulacoesEnum.CPF) {
                 simulacao.setCpf(Long.parseLong(CPF.cpfValido()));
@@ -107,11 +107,6 @@ public class CadastroSimulacao{
         return simulacao;
     }
 
-    public static void main(String[] args) {
-        CadastroSimulacao cadastroSimulacao = new CadastroSimulacao();
-        Object[] sim = {SimulacoesEnum.SEGURO, SimulacoesEnum.CPF};
-        cadastroSimulacao.cadastroParametrizadoSelecionaCampo(new SimulacoesEnum[]{SimulacoesEnum.SEGURO, SimulacoesEnum.CPF});
-    }
 
 
 

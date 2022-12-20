@@ -4,7 +4,7 @@ import core.utils.GeraCpf;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.response.ResponseBodyExtractionOptions;
+import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
@@ -54,15 +54,16 @@ public class BaseTest implements ApiPathBase {
     }
 
 
-    public Object criarSimulacao(){
+    public Response criarSimulacao(){
         CadastroSimulacao simulacao = new CadastroSimulacao();
-        return given()
+        Response response =  given()
                 .body(simulacao.cadastroSemSeguro())
             .when()
                 .post(CRIAR_SIMULACAO)
                 .then()
                 .statusCode(201)
-                .extract().body().path("cpf");
+                .extract().response();
+        return response;
 
     }
 

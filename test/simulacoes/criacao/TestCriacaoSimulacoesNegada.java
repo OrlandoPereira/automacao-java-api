@@ -3,6 +3,7 @@ package simulacoes.criacao;
 import core.BaseTest;
 import core.CadastroSimulacao;
 import core.enums.SimulacoesEnum;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static core.ConstantsResponse.*;
@@ -84,10 +85,10 @@ public class TestCriacaoSimulacoesNegada extends BaseTest {
 
     @Test
     public void testNaoCriarSimulacaoComCpfExistente(){
-        Object cpf = criarSimulacao();
+        Response cpf = criarSimulacao();
         CadastroSimulacao simulacao = new CadastroSimulacao();
         given()
-                .body(simulacao.cadastroParametrizadoEditaCampo(SimulacoesEnum.CPF, (String) cpf))
+                .body(simulacao.cadastroParametrizadoEditaCampo(SimulacoesEnum.CPF, (String) cpf.path("cpf")))
                 .when()
                 .post(CRIAR_SIMULACAO)
                 .then()
