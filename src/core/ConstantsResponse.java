@@ -19,4 +19,7 @@ public interface ConstantsResponse {
     String MSG_VALOR_DEVE_SER_MENOR_OU_IGUAL_A_R$40000 = "Valor deve ser menor ou igual a R$ 40.000";
     String MSG_PARCELAS_DEVE_SER_IGUAL_OU_MAIOR_QUE_2 = "Parcelas deve ser igual ou maior que 2";
 
+    /* CAMPOS OBRIGATORIOS ALTERACAO*/
+    String MSG_CPF_NAO_ENCONTRADO = "CPF %s não encontrado";
+
 }

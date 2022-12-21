@@ -9,7 +9,7 @@ public class CadastroSimulacao{
     private Faker faker = new Faker();
     private Simulacoes simulacao = new Simulacoes();
     private GeraCpf CPF = new GeraCpf();
-    public Object cadastroComSeguro(){
+    public Simulacoes cadastroComSeguro(){
         simulacao.setCpf(Long.parseLong(CPF.cpfValido()));
         simulacao.setNome(faker.name().name());
         simulacao.setEmail(faker.internet().emailAddress());
@@ -20,7 +20,7 @@ public class CadastroSimulacao{
         return simulacao;
     }
 
-    public Object cadastroSemSeguro(){
+    public Simulacoes cadastroSemSeguro(){
         simulacao.setCpf(Long.parseLong(CPF.cpfValido()));
         simulacao.setNome(faker.name().name());
         simulacao.setEmail(faker.internet().emailAddress());
@@ -51,10 +51,9 @@ public class CadastroSimulacao{
         // Seguro
         if (name == SimulacoesEnum.SEGURO) {
             if (valeu.equalsIgnoreCase("true")){simulacao.setSeguro(true);
-            } else if (valeu.equalsIgnoreCase("false")){simulacao.setSeguro(false);
-            } else {simulacao.setSeguro(true);
-            }
-        }
+            } else if (valeu.equalsIgnoreCase("false")){simulacao.setSeguro(false);}}
+        else {simulacao.setSeguro(true);}
+
         return simulacao;
     }
 

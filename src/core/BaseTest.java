@@ -1,5 +1,6 @@
 package core;
 
+import core.entidade.Simulacoes;
 import core.utils.GeraCpf;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -53,7 +54,6 @@ public class BaseTest implements ApiPathBase {
         return data;
     }
 
-
     public Response criarSimulacao(){
         CadastroSimulacao simulacao = new CadastroSimulacao();
         Response response =  given()
@@ -65,6 +65,18 @@ public class BaseTest implements ApiPathBase {
                 .extract().response();
         return response;
 
+    }
+
+    public Simulacoes criarSimulacaoRetornoEntidade(){
+        Simulacoes simulacao = new CadastroSimulacao().cadastroSemSeguro();
+        given()
+                .body(simulacao)
+                .when()
+                .post(CRIAR_SIMULACAO)
+                .then()
+                .statusCode(201)
+                .extract().response();
+        return simulacao;
     }
 
 

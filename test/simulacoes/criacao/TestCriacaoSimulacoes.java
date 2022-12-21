@@ -3,6 +3,7 @@ package simulacoes.criacao;
 import core.BaseTest;
 import static core.ApiPath.CRIAR_SIMULACAO;
 import core.CadastroSimulacao;
+import core.entidade.Simulacoes;
 import core.enums.SimulacoesEnum;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
@@ -26,14 +27,21 @@ public class TestCriacaoSimulacoes extends BaseTest{
 
     @Test
     public void testCriarSimulacaoSemSeguroComSucesso(){
-        CadastroSimulacao simulacao = new CadastroSimulacao();
+        Simulacoes simulacao = new CadastroSimulacao().cadastroSemSeguro();
+
         given()
-                .body(simulacao.cadastroSemSeguro())
+                .body(simulacao)
                 .when()
                 .post(CRIAR_SIMULACAO)
                 .then()
                 .log().body()
-                .statusCode(201);
+                .statusCode(201)
+                .body("nome", is(simulacao.getNome()))
+                .body("cpf", is(simulacao.getCpf().toString()))
+                .body("email", is(simulacao.getEmail()))
+                .body("valor", is(simulacao.getValor()))
+                .body("parcelas", is(simulacao.getParcelas()))
+                .body("seguro", is(simulacao.getSeguro()));
     }
 
     @Test
