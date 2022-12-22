@@ -1,17 +1,11 @@
 package simulacoes.consulta;
 
 import core.BaseTest;
-import core.ConstantsResponse;
-import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static core.ApiPath.CONSULTA_TODAS_SIMULACOES;
 import static io.restassured.RestAssured.given;
-import static io.restassured.path.json.JsonPath.from;
 import static org.hamcrest.Matchers.*;
 
 public class TestConsultaSimulacaoTodas extends BaseTest {

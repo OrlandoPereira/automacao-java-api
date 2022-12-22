@@ -10,16 +10,10 @@ import org.hamcrest.Matchers;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static core.ApiPath.*;
 import static io.restassured.RestAssured.*;
-import static io.restassured.path.json.JsonPath.from;
-import static org.hamcrest.Matchers.equalTo;
 
 public class BaseTest implements ApiPathBase {
 
@@ -51,7 +45,6 @@ public class BaseTest implements ApiPathBase {
         }
         return returnValues;
     }
-    private GeraCpf CPF = new GeraCpf();
 
     @DataProvider(name = "DP_CADASTRO_SIMULACAO")
     public Object[][] DP_CADASTRO_SIMULACAO(){
