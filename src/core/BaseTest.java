@@ -12,8 +12,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 
-import static core.ApiPath.CRIAR_SIMULACAO;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static core.ApiPath.*;
 import static io.restassured.RestAssured.*;
+import static io.restassured.path.json.JsonPath.from;
+import static org.hamcrest.Matchers.equalTo;
 
 public class BaseTest implements ApiPathBase {
 
@@ -56,15 +62,25 @@ public class BaseTest implements ApiPathBase {
 
     public Response criarSimulacao(){
         CadastroSimulacao simulacao = new CadastroSimulacao();
-        Response response =  given()
+        return given()
                 .body(simulacao.cadastroSemSeguro())
-            .when()
+                .when()
                 .post(CRIAR_SIMULACAO)
                 .then()
                 .statusCode(201)
                 .extract().response();
-        return response;
+    }
 
+    public void criarSimulacao(Integer qtd){
+        for (Integer i = 0; i < qtd; i++) {
+            CadastroSimulacao simulacao = new CadastroSimulacao();
+            given()
+                    .body(simulacao.cadastroSemSeguro())
+                    .when()
+                    .post(CRIAR_SIMULACAO)
+                    .then()
+                    .statusCode(201);
+        }
     }
 
     public Simulacoes criarSimulacaoRetornoEntidade(){
@@ -77,6 +93,27 @@ public class BaseTest implements ApiPathBase {
                 .statusCode(201)
                 .extract().response();
         return simulacao;
+    }
+
+    public List<Integer> consultaTodasSimulacoes(){
+        Response response = given()
+                .when()
+                .get(CONSULTA_TODAS_SIMULACOES)
+                .then()
+                .statusCode(200)
+                .extract().response();
+        return response.path("id");
+
+    }
+
+    public void deletarRegistrosSimulacao(List<Integer> ids){
+        for (Integer id: ids){
+            given()
+                    .when()
+                    .delete(REMOVER_SIMULACAO, id)
+                    .then()
+                    .statusCode(200);
+        }
     }
 
 

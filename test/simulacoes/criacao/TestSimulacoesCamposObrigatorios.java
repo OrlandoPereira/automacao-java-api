@@ -5,9 +5,6 @@ import core.CadastroSimulacao;
 import core.enums.SimulacoesEnum;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static core.ApiPath.CRIAR_SIMULACAO;
 import static core.ConstantsResponse.*;
 import static io.restassured.RestAssured.given;

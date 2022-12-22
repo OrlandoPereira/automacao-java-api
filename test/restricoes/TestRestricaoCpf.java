@@ -5,7 +5,6 @@ import static core.ApiPath.CONSULTA_RESTRICAO_POR_CPF;
 import static core.ConstantsResponse.MSG_CPF_COM_RESTRICAO;
 
 import core.utils.GeraCpf;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.is;

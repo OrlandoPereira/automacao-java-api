@@ -5,7 +5,6 @@ import static core.ApiPath.CRIAR_SIMULACAO;
 import core.CadastroSimulacao;
 import core.entidade.Simulacoes;
 import core.enums.SimulacoesEnum;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -84,7 +83,7 @@ public class TestCriacaoSimulacoes extends BaseTest{
                 .then()
                 .log().body()
                 .statusCode(201)
-                .body("parcelas", is(numParcela));;
+                .body("parcelas", is(numParcela));
     }
 
     @Test
@@ -98,7 +97,7 @@ public class TestCriacaoSimulacoes extends BaseTest{
                 .then()
                 .log().body()
                 .statusCode(201)
-                .body("parcelas", is(numParcela));;
+                .body("parcelas", is(numParcela));
     }
 
 
